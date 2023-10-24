@@ -9,7 +9,7 @@ export default function App() {
     <div className='relative'>
       <Header setDetailProfile={setDetailProfileVisible} />
       {isDetailProfileVisible && (
-        <div className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-50'>
+        <div className='fixed inset-0 flex justify-center items-center bg-color-bg-detailprofile '>
           <DetailProfile isVisible={isDetailProfileVisible} setDetailProfile={setDetailProfileVisible} />
         </div>
       )}

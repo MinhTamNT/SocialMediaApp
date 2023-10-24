@@ -28,10 +28,10 @@ export const DetailProfile: React.FC<IProp> = (props) => {
   return (
     <animated.div
       style={springProps}
-      className='detail-profile w-full overflow-auto h-[70%] fixed z-10 bottom-0 left-0 bg-gray-100'
+      className='detail-profile w-full overflow-auto h-[70%] rounded-lg fixed z-10 bottom-0 left-0 bg-gray-100'
       ref={detailRelf}
     >
-      <div>Hello</div>
+      <div></div>
     </animated.div>
   )
 }

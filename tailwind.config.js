@@ -11,6 +11,7 @@ export default {
         "color-deafult": "#ffffff",
         "avatar-color": "#55BD46",
         "hover-deafult": "#E2E7E9",
+        "color-bg-detailprofile": "#00000099",
       },
       fontSize: {
         13: "13px",
