@@ -5,4 +5,8 @@
   .default-button-icons{
     @apply w-[32px] h-[32px] rounded-md grid auto-cols-max justify-center items-center mr-2 hover:bg-hover-deafult
   }
+  .li-defaulut {
+    @apply flex items-center gap-3 mb-5
+  }
+  
 }

@@ -4,12 +4,16 @@ import { BsSearch, BsPlusCircle, BsThreeDots } from 'react-icons/bs'
 import { images } from '~/assets/images/image'
 interface IPROP {
   setDetailProfile: React.Dispatch<React.SetStateAction<boolean>>
+  setSearch: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const Navbar: React.FC<IPROP> = (props) => {
   const user = false
-  const { setDetailProfile } = props
+  const { setDetailProfile, setSearch } = props
   const handleDetailProfile = () => {
     setDetailProfile(true)
+  }
+  const handlerToggleSearch = () => {
+    setSearch(true)
   }
   return (
     <>
@@ -30,7 +34,7 @@ export const Navbar: React.FC<IPROP> = (props) => {
               {' '}
               <div className='search-navbar '>
                 <button className=' default-button-icons'>
-                  <BsSearch size={'20px'} className='cursor-pointer' />
+                  <BsSearch size={'20px'} className='cursor-pointer' onClick={handlerToggleSearch} />
                 </button>
               </div>
               <div className='createPost'>
@@ -51,9 +55,11 @@ export const Navbar: React.FC<IPROP> = (props) => {
           ) : (
             <>
               <div className='flex items-center justify-end gap-2'>
-                <Button variant='contained'>SIGN IN</Button>
+                <Button variant='contained' className='rounded-full'>
+                  SIGN IN
+                </Button>
                 <button className=' default-button-icons'>
-                  <BsSearch size={'20px'} className='cursor-pointer' />
+                  <BsSearch size={'20px'} className='cursor-pointer ' onClick={handlerToggleSearch} />
                 </button>
                 <button className='default-button-icons'>
                   <BsThreeDots size={'22px'} className='cursor-pointer' onClick={handleDetailProfile} />

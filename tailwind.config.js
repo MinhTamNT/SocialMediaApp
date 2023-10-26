@@ -7,6 +7,7 @@ export default {
         sora: ["Sora"],
       },
       colors: {
+        secondry: "#0F1A1C",
         "boder-color-default": "#0000001a",
         "color-deafult": "#ffffff",
         "avatar-color": "#55BD46",
