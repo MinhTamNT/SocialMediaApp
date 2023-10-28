@@ -58,9 +58,6 @@ export const Navbar: React.FC<IPROP> = (props) => {
                 <Button variant='contained' className='rounded-full'>
                   SIGN IN
                 </Button>
-                <button className=' default-button-icons'>
-                  <BsSearch size={'20px'} className='cursor-pointer ' onClick={handlerToggleSearch} />
-                </button>
                 <button className='default-button-icons'>
                   <BsThreeDots size={'22px'} className='cursor-pointer' onClick={handleDetailProfile} />
                 </button>

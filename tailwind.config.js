@@ -13,8 +13,11 @@ export default {
         "avatar-color": "#55BD46",
         "hover-deafult": "#E2E7E9",
         "color-bg-detailprofile": "#00000099",
+        "text-color-weak": "#576F76",
       },
       fontSize: {
+        11: "11px",
+        12: "12px",
         13: "13px",
         14: "14px",
         16: "16px",
