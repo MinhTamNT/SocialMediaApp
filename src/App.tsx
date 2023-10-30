@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import { Header } from './components/Header/Header'
-import { DetailProfile } from './components/DetailProfile/DetailProfile'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { publicRoutes } from './components/Routes'
+import { DefaultLayout } from './Layouts/DefaultLayout/DefaultLayout'
+import { Home } from './components/Pages/Home/Home'
 export default function App() {
-  const [isDetailProfileVisible, setDetailProfileVisible] = useState(false)
   return (
-    <div className='relative h-screen w-full'>
-      <Header setDetailProfile={setDetailProfileVisible} />
-      {isDetailProfileVisible && (
-        <div className='fixed inset-0 flex justify-center items-center bg-color-bg-detailprofile '>
-          <DetailProfile isVisible={isDetailProfileVisible} setDetailProfile={setDetailProfileVisible} />
-        </div>
-      )}
-    </div>
+    // <Router>
+    //   <div className='App relative h-screen w-full'>
+    //     <Routes>
+    //       {publicRoutes.map((route, index) => {
+    //         const Page = DefaultLayout
+    //         return <Route key={index} path={route.path} element />
+    //       })}
+    //     </Routes>
+    //   </div>
+    // </Router>
+    <>
+      <Home />
+    </>
   )
 }

@@ -7,7 +7,7 @@ interface IPROP {
   setSearch: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const Navbar: React.FC<IPROP> = (props) => {
-  const user = false
+  const user = true
   const { setDetailProfile, setSearch } = props
   const handleDetailProfile = () => {
     setDetailProfile(true)
@@ -17,11 +17,11 @@ export const Navbar: React.FC<IPROP> = (props) => {
   }
   return (
     <>
-      <nav className=' flex justify-between items-center p-5 w-full '>
+      <nav className=' inner_header flex justify-between items-center p-3 w-full md:h-full'>
         <div className='flex items-center '>
           <div className='hambuger-menu'>
-            <button className='w-[32px] h-[32px] rounded-md grid auto-cols-max   justify-center items-center mr-2 cursor-pointer hover:bg-hover-deafult '>
-              <AiOutlineMenu size='20px' className='cursor-pointer' />
+            <button className='w-[32px] h-[32px] rounded-md grid auto-cols-max justify-center items-center mr-2 cursor-pointer hover:bg-hover-deafult '>
+              <AiOutlineMenu size='20px' className='cursor-pointer md:hidden' />
             </button>
           </div>
           <div className='w-[32px]'>
