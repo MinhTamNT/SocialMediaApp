@@ -1,17 +1,18 @@
-import React from 'react'
-import { Content } from '../components/Content/Content'
-import { InformationPages } from '../components/InformationPages/InformationPages'
+import React, { ReactNode } from 'react'
 import { Header } from '~/components/Header/Header'
+import { Content } from '../components/Content/Content'
 
-export const DefaultLayout: React.FC = () => {
+interface DefaultLayoutProps {
+  children: ReactNode
+}
+
+export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
     <div className='wrapper'>
       <Header />
       <div className='containner'>
         <Content />
-        <div className='information_pages'>
-          <InformationPages />
-        </div>
+        <div className='information_pages'>{children}</div>
       </div>
     </div>
   )

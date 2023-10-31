@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
   }, [windowSize])
   return (
     <header className='wrapper md:flex md:justify-center w-full h-[60px] bg-color-deafult border-[1px] relative border-solid border-boder-color-default border-b-sm '>
-      <Navbar setDetailProfileVisible = {setDetailProfileVisible}  setSearch={setSearch} />
+      <Navbar setDetailProfileVisible={setDetailProfileVisible} setSearch={setSearch} />
       {isSearch && <Search setSearch={setSearch} />}
       {isDetailProfileVisible && (
         <div className='fixed inset-0 flex justify-center items-center bg-color-bg-detailprofile '>

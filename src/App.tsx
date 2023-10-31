@@ -1,14 +1,15 @@
+import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { publicRoutes } from './components/Routes'
 import { DefaultLayout } from './Layouts/DefaultLayout/DefaultLayout'
-import { Fragment } from 'react'
-export default function App() {
+
+function App() {
   return (
     <Router>
-      <div className='App relative h-screen w-full'>
+      <div className='App'>
         <Routes>
           {publicRoutes.map((route, index) => {
-            const Layout: any = route.layout === null ? Fragment :DefaultLayout
+            let Layout: any = route.layout === null ? Fragment : DefaultLayout
             const Page = route.component
             return (
               <Route
@@ -27,3 +28,5 @@ export default function App() {
     </Router>
   )
 }
+
+export default App
