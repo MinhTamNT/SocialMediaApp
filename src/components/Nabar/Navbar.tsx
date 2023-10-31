@@ -3,14 +3,15 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import { BsSearch, BsPlusCircle, BsThreeDots } from 'react-icons/bs'
 import { images } from '~/assets/images/image'
 interface IPROP {
-  setDetailProfile: React.Dispatch<React.SetStateAction<boolean>>
   setSearch: React.Dispatch<React.SetStateAction<boolean>>
+  setDetailProfileVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const Navbar: React.FC<IPROP> = (props) => {
   const user = true
-  const { setDetailProfile, setSearch } = props
+  const { setDetailProfileVisible, setSearch } = props
+
   const handleDetailProfile = () => {
-    setDetailProfile(true)
+    setDetailProfileVisible(true)
   }
   const handlerToggleSearch = () => {
     setSearch(true)
@@ -20,7 +21,7 @@ export const Navbar: React.FC<IPROP> = (props) => {
       <nav className=' inner_header flex justify-between items-center p-3 w-full md:h-full'>
         <div className='flex items-center '>
           <div className='hambuger-menu'>
-            <button className='w-[32px] h-[32px] rounded-md grid auto-cols-max justify-center items-center mr-2 cursor-pointer hover:bg-hover-deafult '>
+            <button className='w-[32px] h-[32px] rounded-md grid auto-cols-max justify-center items-center mr-2 cursor-pointer hover:bg-hover-deafult md:hidden '>
               <AiOutlineMenu size='20px' className='cursor-pointer md:hidden' />
             </button>
           </div>
@@ -31,7 +32,6 @@ export const Navbar: React.FC<IPROP> = (props) => {
         <div className='flex items-center flex-1 justify-end relative gap-2'>
           {user ? (
             <>
-              {' '}
               <div className='search-navbar '>
                 <button className=' default-button-icons'>
                   <BsSearch size={'20px'} className='cursor-pointer' onClick={handlerToggleSearch} />

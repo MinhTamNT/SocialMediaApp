@@ -25,16 +25,16 @@ export const DetailProfile: React.FC<IProp> = (props) => {
     return () => {
       document.removeEventListener('mousedown', handlerClickOutside)
     }
-  }, [setDetailProfile])
+  }, [])
 
   const heightClass = user ? 'h-[35%]' : 'h-[15%]'
 
   return (
     <div
+      ref={detailRelf}
       className={`w-full overflow-auto ${heightClass} rounded-lg fixed z-10 bottom-0 left-0 bg-gray-100 transform transition-transform duration-100 ease-in ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
       }`}
-      ref={detailRelf}
     >
       {user ? (
         <>

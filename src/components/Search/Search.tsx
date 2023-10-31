@@ -28,23 +28,24 @@ export const Search: React.FC<Iprop> = (props) => {
   }
 
   return (
-    <Tippy
-      interactive
-      placement='bottom-start'
-      visible={searchNews.length > 0}
-      render={(attrs) => (
-        <div className=' w-[361px] lg:w-[800px] xl:w-[800px] 2xl:w-[800px]' tabIndex={1} {...attrs}>
-          <PopperWrapper>
-            <div className='ml-2 mb-2 mt-3 text-text-color-weak flex items-center gap-2'>
-              <BiTrendingUp size='22px' />
-              <p className='text-13'>TRENDING TODAY</p>
-            </div>
-            <SearchNewsItems />
-          </PopperWrapper>
-        </div>
-      )}
-    >
-      <div className='z-10 top-0 left-0 absolute px-4 py-2 bg-white w-full lg:w-[800px]'>
+    <div className='z-10 top-0 left-0 absolute px-4 py-2 bg-white w-full h-screen lg:w-[800px]'>
+      <Tippy
+        interactive
+        placement='bottom-start'
+        visible={searchNews.length > 0}
+        className='z-20'
+        render={(attrs) => (
+          <div className=' w-[361px] lg:w-[800px] xl:w-[800px] 2xl:w-[800px]' tabIndex={1} {...attrs}>
+            <PopperWrapper>
+              <div className='ml-2 mb-2 mt-3 text-text-color-weak flex items-center gap-2'>
+                <BiTrendingUp size='22px' />
+                <p className='text-13'>TRENDING TODAY</p>
+              </div>
+              <SearchNewsItems />
+            </PopperWrapper>
+          </div>
+        )}
+      >
         <div className='flex items-center relative'>
           <div className=''>
             <button className='w-5 h-5 rounded-md grid auto-cols-max justify-center items-center mr-2 hover:bg-gray-100'>
@@ -62,7 +63,7 @@ export const Search: React.FC<Iprop> = (props) => {
             <AiOutlineSearch size={'22px'} />
           </span>
         </div>
-      </div>
-    </Tippy>
+      </Tippy>
+    </div>
   )
 }
