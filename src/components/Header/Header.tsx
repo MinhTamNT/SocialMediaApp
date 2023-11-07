@@ -4,13 +4,16 @@ import { Search } from '~/components/Search/Search'
 import { DetailProfile } from '~/components/DeatilProfileMenuItems/DetailProfile/DetailProfile'
 import { AiOutlineCloseCircle, AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { images } from '~/assets/images/image'
-import Tippy from '@tippyjs/react/headless'
+import Tippy from '@tippyjs/react'
+import 'tippy.js/dist/tippy.css'
 import { SearchNewsItems } from '../Search/SearchNewsItems/SearchNewsItems'
 import { Wrapper as PopperWrapper } from '../Propper/Wrapper'
+import { Button } from '../Button/Button'
 export const Header: React.FC = () => {
+  const user = false
   const [isDetailProfileVisible, setDetailProfileVisible] = useState(false)
   const [isSearch, setSearch] = useState(false)
-  const [searchResult, setSearchResult] = useState([1, 2, 3])
+  const [searchResult, setSearchResult] = useState([])
   const [isMobile, setMobile] = useState(false)
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -38,7 +41,7 @@ export const Header: React.FC = () => {
   }, [])
   useEffect(() => {
     setTimeout(() => {
-      setSearchResult([1,23])
+      setSearchResult([])
     }, 0)
   }, [])
   return (
@@ -57,7 +60,9 @@ export const Header: React.FC = () => {
         ) : (
           <>
             <div className='logo_webiste'>
-              <img src={images.logo} alt='images' className='h-[48px] cursor-pointer' />
+              <Tippy content='Go home' placement='bottom'>
+                <img src={images.logo} alt='images' className='h-[48px] cursor-pointer' />
+              </Tippy>
             </div>
             <Tippy
               interactive
@@ -79,9 +84,9 @@ export const Header: React.FC = () => {
                 <button className='btn-close search-btn-loading-clear'>
                   <AiOutlineCloseCircle />
                 </button>
-                <div className='loading search-btn-loading-clear'>
+                {/* <div className='loading search-btn-loading-clear'>
                   <AiOutlineLoading3Quarters />
-                </div>
+                </div> */}
                 <button className='search-btn absolute left-2 top-3 w-[52px] '>
                   <svg
                     fill='currentColor'
@@ -96,7 +101,10 @@ export const Header: React.FC = () => {
                 </button>
               </div>
             </Tippy>
-            <div className='action'></div>
+            <div className='action flex items-center'>
+              <Button large>Sign In</Button>
+              <Button small>Sign Up</Button>
+            </div>
           </>
         )}
       </div>

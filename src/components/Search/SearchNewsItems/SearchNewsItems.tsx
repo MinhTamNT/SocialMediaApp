@@ -25,6 +25,33 @@ export const SearchNewsItems: React.FC = () => {
       subreddit: 'r/nfl and more',
       avatarUrl: 'https://b.thumbs.redditmedia.com/gPTZdsAVMdsYqOqNFtEkAyKuMZGdva3H5pTQztE7qCQ.png',
       coverImageUrl: 'https://b.thumbs.redditmedia.com/72CibiV0mWj--HNNEvRg6u0Ny4LRan1KCPxqCJfxEOk.jpg'
+    },
+    {
+      id: 3,
+      title: 'NFL Week 82',
+      description:
+        'NFL Power Rankings, Week 8: Chiefs reclaim No. 1 spot; rampaging Ravens soar into top fiveNFL Power Rankings, Week 8: Chiefs reclaim No. 1 spot; rampaging Ravens soar into top five',
+      subreddit: 'r/nfl and more',
+      avatarUrl: 'https://b.thumbs.redditmedia.com/gPTZdsAVMdsYqOqNFtEkAyKuMZGdva3H5pTQztE7qCQ.png',
+      coverImageUrl: 'https://b.thumbs.redditmedia.com/72CibiV0mWj--HNNEvRg6u0Ny4LRan1KCPxqCJfxEOk.jpg'
+    },
+    {
+      id: 4,
+      title: 'NFL Week 821',
+      description:
+        'NFL Power Rankings, Week 8: Chiefs reclaim No. 1 spot; rampaging Ravens soar into top fiveNFL Power Rankings, Week 8: Chiefs reclaim No. 1 spot; rampaging Ravens soar into top five',
+      subreddit: 'r/nfl and more',
+      avatarUrl: 'https://b.thumbs.redditmedia.com/gPTZdsAVMdsYqOqNFtEkAyKuMZGdva3H5pTQztE7qCQ.png',
+      coverImageUrl: 'https://b.thumbs.redditmedia.com/72CibiV0mWj--HNNEvRg6u0Ny4LRan1KCPxqCJfxEOk.jpg'
+    },
+    {
+      id: 5,
+      title: 'NFL Week 822',
+      description:
+        'NFL Power Rankings, Week 8: Chiefs reclaim No. 1 spot; rampaging Ravens soar into top fiveNFL Power Rankings, Week 8: Chiefs reclaim No. 1 spot; rampaging Ravens soar into top five',
+      subreddit: 'r/nfl and more',
+      avatarUrl: 'https://b.thumbs.redditmedia.com/gPTZdsAVMdsYqOqNFtEkAyKuMZGdva3H5pTQztE7qCQ.png',
+      coverImageUrl: 'https://b.thumbs.redditmedia.com/72CibiV0mWj--HNNEvRg6u0Ny4LRan1KCPxqCJfxEOk.jpg'
     }
   ]
 
