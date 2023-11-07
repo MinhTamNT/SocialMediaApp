@@ -25,15 +25,6 @@ export const SearchNewsItems: React.FC = () => {
       subreddit: 'r/nfl and more',
       avatarUrl: 'https://b.thumbs.redditmedia.com/gPTZdsAVMdsYqOqNFtEkAyKuMZGdva3H5pTQztE7qCQ.png',
       coverImageUrl: 'https://b.thumbs.redditmedia.com/72CibiV0mWj--HNNEvRg6u0Ny4LRan1KCPxqCJfxEOk.jpg'
-    },
-    {
-      id: 3,
-      title: 'NFL Week 8',
-      description:
-        'NFL Power Rankings, Week 8: Chiefs reclaim No. 1 spot; rampaging Ravens soar into top fiveNFL Power Rankings, Week 8: Chiefs reclaim No. 1 spot; rampaging Ravens soar into top five',
-      subreddit: 'r/nfl and more',
-      avatarUrl: 'https://b.thumbs.redditmedia.com/gPTZdsAVMdsYqOqNFtEkAyKuMZGdva3H5pTQztE7qCQ.png',
-      coverImageUrl: 'https://b.thumbs.redditmedia.com/72CibiV0mWj--HNNEvRg6u0Ny4LRan1KCPxqCJfxEOk.jpg'
     }
   ]
 
@@ -42,12 +33,12 @@ export const SearchNewsItems: React.FC = () => {
       <ul role='menu' className='list-none mt-0 mb-0 search-result-list'>
         {newsData.map((news, index) => (
           <li
-            key={news.id}
+            key={news.title}
             className={`relative list-none mt-0 border-b ${
               index !== newsData.length - 1 ? 'border-gray-300' : 'border-transparent'
             }`}
           >
-            <a className='flex pl-3 justify-between px-md gap-[0.5rem] text-secondary'>
+            <a className='flex pl-3 justify-between px-md gap-[0.5rem] text-secondary hover:bg-hover-popper'>
               <span className='flex items-center gap-xs min-w-0 shrink w-[400px]'>
                 <span className='flex flex-col justify-center min-w-0 shrink py-2'>
                   <span className='text-14'>

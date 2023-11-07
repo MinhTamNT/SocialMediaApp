@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Navbar } from '~/components/Nabar/NavbarMobile'
 import { Search } from '~/components/Search/Search'
-import { DetailProfile } from '~/components/DetailProfile/DetailProfile'
+import { DetailProfile } from '~/components/DeatilProfileMenuItems/DetailProfile/DetailProfile'
 import { AiOutlineCloseCircle, AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { images } from '~/assets/images/image'
+import Tippy from '@tippyjs/react/headless'
+import { SearchNewsItems } from '../Search/SearchNewsItems/SearchNewsItems'
+import { Wrapper as PopperWrapper } from '../Propper/Wrapper'
 export const Header: React.FC = () => {
   const [isDetailProfileVisible, setDetailProfileVisible] = useState(false)
   const [isSearch, setSearch] = useState(false)
+  const [searchResult, setSearchResult] = useState([1, 2, 3])
   const [isMobile, setMobile] = useState(false)
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -31,7 +35,12 @@ export const Header: React.FC = () => {
     } else {
       setMobile(false)
     }
-  }, [windowSize])
+  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      setSearchResult([1,23])
+    }, 0)
+  }, [])
   return (
     <header className='wrapper md:flex md:justify-center w-full h-[60px] bg-color-deafult border-[1px] relative border-solid border-boder-color-default border-b-sm '>
       <div className={`inner ${isMobile ? 'w-full' : 'w-[1350px]'} md:flex md:items-center md:justify-between `}>
@@ -48,33 +57,45 @@ export const Header: React.FC = () => {
         ) : (
           <>
             <div className='logo_webiste'>
-              <img src={images.logo} alt='images' className='h-[48px]' />
+              <img src={images.logo} alt='images' className='h-[48px] cursor-pointer' />
             </div>
-            <div className='search relative w-[600px] h-[40px] pl-[16px] border-[1px] rounded-full flex '>
-              <input
-                placeholder='Search The News'
-                spellCheck={false}
-                className='text-lg bg-transparent outline-none p-4 h-full flex-1 caret-primary'
-              />
-              <button className='btn-close search-btn-loading-clear'>
-                <AiOutlineCloseCircle classNames='' />
-              </button>
-              <div className='loading search-btn-loading-clear'>
-                <AiOutlineLoading3Quarters classNames='absolute' />
+            <Tippy
+              interactive
+              visible={searchResult.length > 0}
+              render={(arrts) => (
+                <div className='result-search w-[610px]' tabIndex={-1} {...arrts}>
+                  <PopperWrapper>
+                    <SearchNewsItems />
+                  </PopperWrapper>
+                </div>
+              )}
+            >
+              <div className='search relative w-[600px] h-[40px] pl-[16px] border-[1px] rounded-full flex '>
+                <input
+                  placeholder='Search The News'
+                  spellCheck={false}
+                  className='text-lg bg-transparent outline-none p-4 h-full flex-1 caret-primary'
+                />
+                <button className='btn-close search-btn-loading-clear'>
+                  <AiOutlineCloseCircle />
+                </button>
+                <div className='loading search-btn-loading-clear'>
+                  <AiOutlineLoading3Quarters />
+                </div>
+                <button className='search-btn absolute left-2 top-3 w-[52px] '>
+                  <svg
+                    fill='currentColor'
+                    height='16'
+                    icon-name='search-outline'
+                    viewBox='0 0 20 20'
+                    width='16'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path d='M19.5 18.616 14.985 14.1a8.528 8.528 0 1 0-.884.884l4.515 4.515.884-.884ZM1.301 8.553a7.253 7.253 0 1 1 7.252 7.253 7.261 7.261 0 0 1-7.252-7.253Z'></path>{' '}
+                  </svg>
+                </button>
               </div>
-              <button className='search-btn absolute left-2 top-3 w-[52px] '>
-                <svg
-                  fill='currentColor'
-                  height='16'
-                  icon-name='search-outline'
-                  viewBox='0 0 20 20'
-                  width='16'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path d='M19.5 18.616 14.985 14.1a8.528 8.528 0 1 0-.884.884l4.515 4.515.884-.884ZM1.301 8.553a7.253 7.253 0 1 1 7.252 7.253 7.261 7.261 0 0 1-7.252-7.253Z'></path>{' '}
-                </svg>
-              </button>
-            </div>
+            </Tippy>
             <div className='action'></div>
           </>
         )}

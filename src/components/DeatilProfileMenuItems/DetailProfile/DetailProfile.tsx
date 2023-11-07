@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { BiLogIn } from 'react-icons/bi'
 import { FcAbout } from 'react-icons/fc'
-import { DetailProFileMenuItems } from '../DeatilProfileMenuItems/DetailProFileMenuItems'
-
+import { DetailProFileMenuItems } from '../DetailProFileMenuItems'
 interface IProp {
   isVisible: boolean
   setDetailProfile: React.Dispatch<React.SetStateAction<boolean>>

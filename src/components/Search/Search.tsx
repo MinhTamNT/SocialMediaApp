@@ -4,7 +4,7 @@ import { BiTrendingUp } from 'react-icons/bi'
 import { GrLinkPrevious } from 'react-icons/gr'
 import Tippy from '@tippyjs/react/headless'
 import { Wrapper as PopperWrapper } from '../Propper/Wrapper'
-import { SearchNewsItems } from '../SearchNewsItems/SearchNewsItems'
+import { SearchNewsItems } from './SearchNewsItems/SearchNewsItems'
 
 interface Iprop {
   setSearch: React.Dispatch<React.SetStateAction<boolean>>

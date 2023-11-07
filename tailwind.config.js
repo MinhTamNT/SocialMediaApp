@@ -16,6 +16,9 @@ export default {
         "color-bg-detailprofile": "#00000099",
         "text-color-weak": "#576F76",
         "color-loading-clear-btn": "rgba(22, 24, 35, 0.34)",
+        "PopperWrapper-color-Tippy": "rgba(255,255,255)",
+        "color-popper": "rgba(22,24,35,0.5)",
+        "hover-popper": "rgba(22,24,35,0.03)",
       },
       fontSize: {
         11: "11px",
@@ -29,6 +32,9 @@ export default {
         32: "32px",
         36: "36px",
         48: "48px",
+      },
+      boxShadow: {
+        md: "6px 6px 16px 0 rgba(0, 0, 0, 0.25),-4px -4px 12px 0 rgba(255, 255, 255, 0.3);",
       },
     },
   },

@@ -1,4 +1,3 @@
-import React from 'react'
 import { BiEditAlt,BiLogOut } from 'react-icons/bi'
 import { FiSettings } from 'react-icons/fi'
 
