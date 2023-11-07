@@ -8,11 +8,11 @@ interface DefaultLayoutProps {
 
 export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
-    <div className='wrapper'>
+    <div className='wrapper md:flex m:justify-center md:flex-col md:items-center'>
       <Header />
-      <div className='containner'>
+      <div className='containner md:w-[1550px] md:flex md:mt-2 md:min-h-[100px]'>
         <Content />
-        <div className='information_pages'>{children}</div>
+        <div className='information_pages md:flex-1 md: md:min-h-[1000px] '>{children}</div>
       </div>
     </div>
   )

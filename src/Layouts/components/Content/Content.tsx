@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Content = () => {
-  return <div>Content</div>
+  return <div className='wrapper md:w-[456px] '>Content</div>
 }

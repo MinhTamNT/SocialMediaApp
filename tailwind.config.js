@@ -7,6 +7,7 @@ export default {
         sora: ["Sora"],
       },
       colors: {
+        primary: "#fe2c55",
         secondry: "#0F1A1C",
         "boder-color-default": "#0000001a",
         "color-deafult": "#ffffff",
@@ -14,6 +15,7 @@ export default {
         "hover-deafult": "#E2E7E9",
         "color-bg-detailprofile": "#00000099",
         "text-color-weak": "#576F76",
+        "color-loading-clear-btn": "rgba(22, 24, 35, 0.34)",
       },
       fontSize: {
         11: "11px",

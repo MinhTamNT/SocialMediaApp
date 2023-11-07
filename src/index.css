@@ -8,5 +8,8 @@
   .li-defaulut {
     @apply flex items-center gap-3 mb-5
   }
+  .search-btn-loading-clear{
+    @apply absolute right-[52px] top-[50%] translate-y-[-50%] text-color-loading-clear-btn
+  }
   
 }
