@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { Navbar } from '~/components/Nabar/NavbarMobile'
 import { Search } from '~/components/Search/Search'
 import { DetailProfile } from '~/components/DeatilProfileMenuItems/DetailProfile/DetailProfile'
-import { AiOutlineCloseCircle, AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { AiOutlineCloseCircle, AiOutlineLoading3Quarters, AiOutlineHome } from 'react-icons/ai'
+import { BiLogIn } from 'react-icons/bi'
 import { images } from '~/assets/images/image'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import { SearchNewsItems } from '../Search/SearchNewsItems/SearchNewsItems'
 import { Wrapper as PopperWrapper } from '../Propper/Wrapper'
 import { Button } from '../Button/Button'
+import { BoxMessage, MessgaeIcons } from '~/components/Icons/Icons'
 export const Header: React.FC = () => {
-  const user = false
+  const currentUser = true
   const [isDetailProfileVisible, setDetailProfileVisible] = useState(false)
   const [isSearch, setSearch] = useState(false)
   const [searchResult, setSearchResult] = useState([])
@@ -31,25 +33,25 @@ export const Header: React.FC = () => {
     }
   }, [])
   useEffect(() => {
-    if (windowSize.width >= 500 && windowSize.width < 768) {
+    if (windowSize.width >= 500 && windowSize.width < 1024) {
       setMobile(true)
     } else if (windowSize.width < 500) {
       setMobile(true)
     } else {
       setMobile(false)
     }
-  }, [])
+  }, [windowSize])
   useEffect(() => {
     setTimeout(() => {
       setSearchResult([])
     }, 0)
   }, [])
   return (
-    <header className='wrapper md:flex md:justify-center w-full h-[60px] bg-color-deafult border-[1px] relative border-solid border-boder-color-default border-b-sm '>
-      <div className={`inner ${isMobile ? 'w-full' : 'w-[1350px]'} md:flex md:items-center md:justify-between `}>
+    <header className='wrapper md:flex md:justify-center w-full h-[60px] bg-color-deafult border-[1px] relative border-b-sm shadow-sm '>
+      <div className='inner w-full md:w-[1350px] md:mr-3 md:ml-3 2xl:w-[1850px] md:flex md:items-center md:justify-between '>
         {isMobile ? (
           <>
-            <Navbar setDetailProfileVisible={setDetailProfileVisible} setSearch={setSearch} />
+            <Navbar setDetailProfileVisible={setDetailProfileVisible} setSearch={setSearch} isMobile={isMobile} />
             {isSearch && <Search setSearch={setSearch} />}
             {isDetailProfileVisible && (
               <div className='fixed inset-0 flex justify-center items-center bg-color-bg-detailprofile                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           '>
@@ -59,51 +61,98 @@ export const Header: React.FC = () => {
           </>
         ) : (
           <>
-            <div className='logo_webiste'>
-              <Tippy content='Go home' placement='bottom'>
-                <img src={images.logo} alt='images' className='h-[48px] cursor-pointer' />
-              </Tippy>
-            </div>
-            <Tippy
-              interactive
-              visible={searchResult.length > 0}
-              render={(arrts) => (
-                <div className='result-search w-[610px]' tabIndex={-1} {...arrts}>
-                  <PopperWrapper>
-                    <SearchNewsItems />
-                  </PopperWrapper>
+            <div className='flex items-center '>
+              <Tippy content='Home' placement='bottom'>
+                <div className=''>
+                  <div className='menu-bar'></div>
+                  <div className='logo-webiste flex items-center w-[50px]'>
+                    <img src={images.logo} alt='images' className='h-[32px] cursor-pointer object-cover mr-20' />
+                  </div>
                 </div>
+              </Tippy>
+              <span className='ml-3 text-16 leading-3'>Open Unviserty</span>
+              {currentUser ? (
+                <>
+                  <div className='name_page flex text-xl font-bold gap-3 w-[250px] ml-10 '>
+                    <button className=''>
+                      <AiOutlineHome size={'25px'} />
+                    </button>
+                    <span>Home</span>
+                  </div>
+                </>
+              ) : (
+                <></>
               )}
-            >
-              <div className='search relative w-[600px] h-[40px] pl-[16px] border-[1px] rounded-full flex '>
-                <input
-                  placeholder='Search The News'
-                  spellCheck={false}
-                  className='text-lg bg-transparent outline-none p-4 h-full flex-1 caret-primary'
-                />
-                <button className='btn-close search-btn-loading-clear'>
-                  <AiOutlineCloseCircle />
-                </button>
-                {/* <div className='loading search-btn-loading-clear'>
+              <div className='ml-12'>
+                <Tippy
+                  interactive
+                  visible={searchResult.length > 0}
+                  render={(arrts) => (
+                    <div className='result-search w-[610px]' tabIndex={-1} {...arrts}>
+                      <PopperWrapper>
+                        <SearchNewsItems />
+                      </PopperWrapper>
+                    </div>
+                  )}
+                >
+                  <div className='search relative w-[600px] h-[40px] pl-[16px] border-[1px] rounded-lg flex '>
+                    <input
+                      placeholder='Search The News'
+                      spellCheck={false}
+                      className='text-lg bg-transparent outline-none p-4 h-full flex-1 caret-primary'
+                    />
+                    <button className='btn-close search-btn-loading-clear'>
+                      <AiOutlineCloseCircle />
+                    </button>
+                    {/* <div className='loading search-btn-loading-clear'>
                   <AiOutlineLoading3Quarters />
                 </div> */}
-                <button className='search-btn absolute left-2 top-3 w-[52px] '>
-                  <svg
-                    fill='currentColor'
-                    height='16'
-                    icon-name='search-outline'
-                    viewBox='0 0 20 20'
-                    width='16'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path d='M19.5 18.616 14.985 14.1a8.528 8.528 0 1 0-.884.884l4.515 4.515.884-.884ZM1.301 8.553a7.253 7.253 0 1 1 7.252 7.253 7.261 7.261 0 0 1-7.252-7.253Z'></path>{' '}
-                  </svg>
-                </button>
+                    <button className='search-btn absolute left-2 top-3 w-[52px] '>
+                      <svg
+                        fill='currentColor'
+                        height='16'
+                        icon-name='search-outline'
+                        viewBox='0 0 20 20'
+                        width='16'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path d='M19.5 18.616 14.985 14.1a8.528 8.528 0 1 0-.884.884l4.515 4.515.884-.884ZM1.301 8.553a7.253 7.253 0 1 1 7.252 7.253 7.261 7.261 0 0 1-7.252-7.253Z'></path>{' '}
+                      </svg>
+                    </button>
+                  </div>
+                </Tippy>
               </div>
-            </Tippy>
-            <div className='action flex items-center'>
-              <Button large>Sign In</Button>
-              <Button small>Sign Up</Button>
+            </div>
+
+            <div className='action flex items-center '>
+              {currentUser ? (
+                <>
+                  <Tippy content='Message' placement='bottom'>
+                    <div className='flex cursor-pointer bg-transparent'>
+                      <MessgaeIcons />
+                    </div>
+                  </Tippy>
+                  <Tippy content='Advertisement' placement='bottom'>
+                    <div className='flex cursor-pointer bg-transparent'>
+                      <BoxMessage />
+                    </div>
+                  </Tippy>
+                  <Tippy content='Message' placement='bottom'>
+                    <div className='flex cursor-pointer bg-transparent'>
+                      <MessgaeIcons />
+                    </div>
+                  </Tippy>
+                </>
+              ) : (
+                <>
+                  <Button text className='hover:bg-hover-deafult hover:rounded-md text-16'>
+                    Sign up
+                  </Button>
+                  <Button small rightIcon={<BiLogIn size='22px' />}>
+                    Sign in
+                  </Button>
+                </>
+              )}
             </div>
           </>
         )}

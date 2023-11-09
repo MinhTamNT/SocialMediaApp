@@ -33,21 +33,21 @@
   }
 }
 .primary {
-  background-color: #fe2c55;
+  background-color: #D93A00;
   color: #ffff;
-  border-radius: 10px;
+  border-radius: 50px;
   &:hover {
       border-color: #fe2c55;
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
   }
 }
 .outline {
-  color: var(--primary-btn);
+  color: #fe2c55;
   border-color: currentColor;
   background-color: rgba(254, 44, 85, 0.06);
 
   &:hover {
-      border-color: var(--primary-btn);
+      border-color: #fe2c55;
       background-color: rgba(254, 44, 85, 0.1);
   }
 }
@@ -56,11 +56,10 @@
   background-color: rgb(37, 37, 37);
 }
 .text {
-  border: 1px solid rgba(22, 24, 35, 0.12);
+
   background: rgba(255, 255, 255, 0.08);
-  color: var(--white);
-  &:hover {
-      background-color: rgba(255, 255, 255, 0.04);
+  &:hover{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06));
   }
 }
 .Icon + .tittle,
@@ -75,14 +74,19 @@
 // Button Size
 .small {
   color: white;
+  font-size: 16px;
   min-width: 60px;
-  padding: 4px 16px;
-  border-radius: 6px;
-  background-color: #fe2c55;;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background-color: #D93A00;;
+  &:hover{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+  }
 }
 .large {
   padding: 4px 16px;
-  border-radius: 5px;
+  border-radius: 20px;
+  font-size: 16px;
   background-color: #EAEDEF;
   min-width: 70px;
 }
