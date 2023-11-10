@@ -8,7 +8,7 @@ interface DefaultLayoutProps {
 
 export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
-    <div className='wrapper md:flex m:justify-center md:flex-col md:items-center'>
+    <div className='wrapper md:flex m:justify-center md:flex-col md:items-center overflow-x-hidden overflow-y-auto'>
       <Header />
       <div className='containner md:w-[1150px] md:flex md:mt-2 md:min-h-[100px]'>
         <Content />

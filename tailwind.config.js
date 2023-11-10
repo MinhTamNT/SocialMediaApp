@@ -19,7 +19,6 @@ export default {
         "PopperWrapper-color-Tippy": "rgba(255,255,255)",
         "color-popper": "rgba(22,24,35,0.5)",
         "hover-popper": "rgba(22,24,35,0.03)",
-        "hover-deafult": "rgba(255, 255, 255, 0.3)",
       },
       fontSize: {
         11: "11px",

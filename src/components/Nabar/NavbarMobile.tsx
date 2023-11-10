@@ -1,6 +1,4 @@
-import { Button } from '@mui/material'
 import { AiOutlineMenu } from 'react-icons/ai'
-import { BsSearch, BsPlusCircle, BsThreeDots } from 'react-icons/bs'
 import { images } from '~/assets/images/image'
 interface IPROP {
   setSearch: React.Dispatch<React.SetStateAction<boolean>>
@@ -29,7 +27,7 @@ export const Navbar: React.FC<IPROP> = (props) => {
             <AiOutlineMenu size='20px' className='cursor-pointer' />
           </button>
         </div>
-        <div className='logo-webiste'>
+        <div className=''>
           <img src={images.logo} className='object-cover h-[32px]' />
         </div>
       </div>
