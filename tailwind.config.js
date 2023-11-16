@@ -6,7 +6,15 @@ export default {
       fontFamily: {
         sora: ["Sora"],
       },
-    
+      keyframes: {
+        modal: {
+          "0%": { top: "0", opacity: "0" },
+          "100%": { top: "200", opacity: "1" },
+        },
+      },
+      animation: {
+        modalapper: "modal 0.1s ease-in linear ",
+      },
       colors: {
         primary: "#fe2c55",
         secondry: "#0F1A1C",

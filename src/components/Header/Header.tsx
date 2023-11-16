@@ -35,8 +35,7 @@ export const Header: React.FC<IHomeProps> = (props) => {
     setOpenSetting(!isOpenSetting)
   }
   const handlerToogleLogin = () => {
-    alert('a')
-    setLogin(!false)
+    setLogin(true)
   }
   return (
     <header className='h-[60px] fixed top-0 left-0 w-full z-10 flex shadow-sm items-center justify-between'>
