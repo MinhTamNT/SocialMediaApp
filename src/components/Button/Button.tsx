@@ -9,7 +9,7 @@ interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: true
   rounded?: false
   disabled?: false
-  outline?: false
+  outline?: true
   LeftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
   children?: React.ReactNode

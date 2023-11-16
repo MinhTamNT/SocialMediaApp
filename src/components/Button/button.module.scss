@@ -42,14 +42,10 @@
   }
 }
 .outline {
-  color: #fe2c55;
+  color: white;
   border-color: currentColor;
-  background-color: rgba(254, 44, 85, 0.06);
+  background-color: #3653F8;
 
-  &:hover {
-      border-color: #fe2c55;
-      background-color: rgba(254, 44, 85, 0.1);
-  }
 }
 .Menuitem {
   color: #fff;
@@ -86,7 +82,8 @@
 .large {
   padding: 4px 16px;
   border-radius: 20px;
+  padding: 8px 10px;
   font-size: 16px;
   background-color: #EAEDEF;
-  min-width: 70px;
+  min-width: 60px;;
 }

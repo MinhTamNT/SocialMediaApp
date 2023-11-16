@@ -6,6 +6,9 @@ import {
   AiOutlineArrowUp,
   AiOutlineArrowDown
 } from 'react-icons/ai'
+import { FaEarthAfrica } from 'react-icons/fa6'
+import { RiHome5Line } from 'react-icons/ri'
+import { CiBellOn, CiLogin } from 'react-icons/ci'
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined'
 import { FaRegMessage } from 'react-icons/fa6'
 import { images } from '~/assets/images/image'
@@ -13,15 +16,16 @@ import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import { SearchNewsItems } from '../Search/SearchNewsItems/SearchNewsItems'
 import { Wrapper as PopperWrapper } from '../Propper/Wrapper'
+import { Button } from '../Button/Button'
 interface IHomeProps {
   isMobile?: boolean
+  setLogin: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const Header: React.FC<IHomeProps> = (props) => {
-  const { isMobile } = props
-  const currentUser = true
+  const { isMobile, setLogin } = props
+  const currentUser = false
   const [searchResult, setSearchResult] = useState([])
   const [isOpenSetting, setOpenSetting] = useState(false)
-
   useEffect(() => {
     setTimeout(() => {
       setSearchResult([])
@@ -29,6 +33,10 @@ export const Header: React.FC<IHomeProps> = (props) => {
   }, [])
   const handlerToggleOpenSetiing = () => {
     setOpenSetting(!isOpenSetting)
+  }
+  const handlerToogleLogin = () => {
+    alert('a')
+    setLogin(!false)
   }
   return (
     <header className='h-[60px] fixed top-0 left-0 w-full z-10 flex shadow-sm items-center justify-between'>
@@ -47,120 +55,158 @@ export const Header: React.FC<IHomeProps> = (props) => {
             </>
           ) : (
             <>
-              <div className='logo_website w-[50px]'>
+              <div className='logo_website flex items-center gap-2'>
                 <img src={images.logo} className='h-[32px]' />
+                <p className='hidden md:block text-15 font-bold'>Open University</p>
               </div>
             </>
           )}
+          <div className='md:ml-10 hidden md:border-[1px] md:flex items-center md:gap-2 md:px-10 md:py-2 font-bold text-text-color-weak hover:bg-hover-popper rounded-xl'>
+            <RiHome5Line size={'25px'} />
+            <span className='hidden md:block'>Home</span>
+          </div>
         </div>
       </div>
       <div className='inner-header-action flex items-center gap-5'>
-        <div className='search-action flex'>
-          {isMobile ? (
-            <>
-              {' '}
-              <Tippy content='Search' placement='bottom'>
-                <button className='default-button-icons md:hidden'>
-                  <AiOutlineSearch size={'25px'} />
-                </button>
-              </Tippy>
-            </>
-          ) : (
-            <>
-              <Tippy
-                interactive
-                visible={searchResult.length > 0}
-                render={(arrts) => (
-                  <div className='result-search w-[660px]' tabIndex={-1} {...arrts}>
-                    <PopperWrapper>
-                      <SearchNewsItems />
-                    </PopperWrapper>
-                  </div>
-                )}
-              >
-                <div className='search relative w-[600px] h-[40px] pl-[16px] border-[1px] rounded-lg flex '>
-                  <input
-                    placeholder='Search The News'
-                    spellCheck={false}
-                    className='text-lg bg-transparent outline-none p-4 h-full flex-1 caret-primary'
-                  />
-                  <button className='btn-close search-btn-loading-clear'>
-                    <AiOutlineCloseCircle />
-                  </button>
-                  {/* <div className='loading search-btn-loading-clear'>
-                  <AiOutlineLoading3Quarters />
-                </div> */}
-                  <button className='search-btn absolute left-2 top-3 w-[52px] '>
-                    <svg
-                      fill='currentColor'
-                      height='16'
-                      icon-name='search-outline'
-                      viewBox='0 0 20 20'
-                      width='16'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path d='M19.5 18.616 14.985 14.1a8.528 8.528 0 1 0-.884.884l4.515 4.515.884-.884ZM1.301 8.553a7.253 7.253 0 1 1 7.252 7.253 7.261 7.261 0 0 1-7.252-7.253Z'></path>{' '}
-                    </svg>
-                  </button>
-                </div>
-              </Tippy>
-            </>
-          )}
-        </div>
-        <div
-          className='handler-action flex items-center transition-all ease-out cursor-pointer'
-          onClick={handlerToggleOpenSetiing}
-        >
-          <div className='action_function flex items-center gap-2'>
-            <Tippy content='Message' placement='bottom'>
-              <div className='relative'>
-                <button className='default-button-icons'>
-                  <FaRegMessage size={'25px'} />
-                  <span className='badge absolute top-[-3px] leading-4 right-0 bg-primary rounded-full px-[6px] text-white h-4 text-center text-sm'>
-                    12
-                  </span>
-                </button>
-              </div>
-            </Tippy>
-            <Tippy content='Create the post' placement='bottom'>
-              <button className='default-button-icons'>
-                <CreateOutlinedIcon className='text-[25px]' />
-              </button>
-            </Tippy>
-            <Tippy content='Create the post' placement='bottom'>
-              <button className='default-button-icons md:block hidden'>
-                <CreateOutlinedIcon className='text-[25px]' />
-              </button>
-            </Tippy>
-            <Tippy content='Create the post' placement='bottom'>
-              <button className='default-button-icons md:block hidden'>
-                <CreateOutlinedIcon className='text-[25px]' />
-              </button>
-            </Tippy>
-          </div>
-          <div className='user md:w-[170px] relative flex items-center md:justify-between md:border-[1px] md:px-2 md:py-2 hover:bg-hover-popper md:rounded-lg'>
-            <div className='flex items-center gap-2'>
-              <img
-                src='https://styles.redditmedia.com/t5_2qinp/styles/communityIcon_ex2l6ktnrob51.png'
-                className='h-[32px] rounded-full object-cover'
-              />
-              <span className='w-[6px] h-[6px] absolute bg-green-300 right-[2px] bottom-[-1px] rounded-full md:hidden '></span>
-              <span className='text-16 leading-3 md:block hidden'>Username</span>
-            </div>
-            <div className='icon hidden md:block'>
-              {isOpenSetting ? (
-                <>
-                  <AiOutlineArrowUp size='25' />
-                </>
+        {currentUser ? (
+          <>
+            <div className='search-action flex'>
+              {isMobile ? (
+                <> </>
               ) : (
                 <>
-                  {' '}
-                  <AiOutlineArrowDown size='25' />
+                  <Tippy
+                    interactive
+                    visible={searchResult.length > 0}
+                    render={(arrts) => (
+                      <div className='result-search w-[660px]' tabIndex={-1} {...arrts}>
+                        <PopperWrapper>
+                          <SearchNewsItems />
+                        </PopperWrapper>
+                      </div>
+                    )}
+                  >
+                    <div className='search relative md:w-[600px] w-[350px] h-[40px] pl-[16px] border-[1px] rounded-lg flex '>
+                      <input
+                        placeholder='Search The News'
+                        spellCheck={false}
+                        className='text-lg bg-transparent outline-none p-4 h-full flex-1 caret-primary'
+                      />
+                      <button className='btn-close search-btn-loading-clear'>
+                        <AiOutlineCloseCircle />
+                      </button>
+                      {/* <div className='loading search-btn-loading-clear'>
+                  <AiOutlineLoading3Quarters />
+                </div> */}
+                      <button className='search-btn absolute left-2 top-3 w-[52px] '>
+                        <svg
+                          fill='currentColor'
+                          height='16'
+                          icon-name='search-outline'
+                          viewBox='0 0 20 20'
+                          width='16'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path d='M19.5 18.616 14.985 14.1a8.528 8.528 0 1 0-.884.884l4.515 4.515.884-.884ZM1.301 8.553a7.253 7.253 0 1 1 7.252 7.253 7.261 7.261 0 0 1-7.252-7.253Z'></path>{' '}
+                        </svg>
+                      </button>
+                    </div>
+                  </Tippy>
                 </>
               )}
             </div>
-          </div>
-        </div>
+            <div
+              className='handler-action flex items-center transition-all ease-out cursor-pointer'
+              onClick={handlerToggleOpenSetiing}
+            >
+              <div className='action_function flex items-center gap-1 relative md:mx-auto'>
+                <Tippy content='Search' placement='bottom'>
+                  <button className='default-button-icons md:hidden'>
+                    <AiOutlineSearch size={'25px'} />
+                  </button>
+                </Tippy>
+                <Tippy content='Message' placement='bottom'>
+                  <div className='relative'>
+                    <button className='default-button-icons'>
+                      <FaRegMessage size={'25px'} />
+                      <span className='badge absolute top-[-3px] leading-4 right-0  bg-primary rounded-full px-[6px] text-white h-4 text-center text-sm'>
+                        12
+                      </span>
+                    </button>
+                  </div>
+                </Tippy>
+                <Tippy content='Notifications' placement='bottom'>
+                  <div className='relative'>
+                    <button className='default-button-icons'>
+                      <CiBellOn size={'25px'} />
+                      <span className='badge absolute top-[-3px] leading-4 right-0  bg-primary rounded-full px-[6px] text-white h-4 text-center text-sm'>
+                        12
+                      </span>
+                    </button>
+                  </div>
+                </Tippy>
+
+                {isMobile ? (
+                  <></>
+                ) : (
+                  <>
+                    <Tippy content='Create the post' placement='bottom'>
+                      <button className='default-button-icons'>
+                        <CreateOutlinedIcon className='text-[25px]' />
+                      </button>
+                    </Tippy>
+
+                    <Tippy content='Popular' placement='bottom'>
+                      <button className='default-button-icons'>
+                        <FaEarthAfrica className='text-[25px] text-avatar-color' />
+                      </button>
+                    </Tippy>
+                  </>
+                )}
+              </div>
+              <div className='user md:w-[170px] relative flex items-center md:justify-between md:border-[1px] md:px-2 md:py-2 hover:bg-hover-popper md:rounded-lg mr-2'>
+                <div className='flex items-center gap-2'>
+                  <img
+                    src='https://styles.redditmedia.com/t5_2qinp/styles/communityIcon_ex2l6ktnrob51.png'
+                    className='h-[32px] rounded-full object-cover'
+                  />
+                  <span className='w-[10px] h-[10px] absolute  text-avatar-color right-[2px] bottom-[-1px] rounded-full md:hidden '></span>
+                </div>
+                <span className='text-16 leading-3 md:block hidden'>Username</span>
+                <div className='icon hidden md:block'>
+                  {isOpenSetting ? (
+                    <>
+                      <AiOutlineArrowUp size='25' />
+                    </>
+                  ) : (
+                    <>
+                      {' '}
+                      <AiOutlineArrowDown size='25' />
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className='mr-3'>
+              {isMobile ? (
+                <>
+                  <Button outline className='shadow-xl' onClick={handlerToogleLogin}>
+                    Login in
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button primary LeftIcon={<CiLogin className='text-black text-20' />} onClick={handlerToogleLogin}>
+                    Login in
+                  </Button>
+                </>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </header>
   )
