@@ -1,48 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import { Navbar } from '~/components/Nabar/NavbarMobile'
-import { Search } from '~/components/Search/Search'
-import { DetailProfile } from '~/components/DeatilProfileMenuItems/DetailProfile/DetailProfile'
-import { AiOutlineCloseCircle, AiOutlineLoading3Quarters, AiOutlineHome, AiOutlineClose } from 'react-icons/ai'
-import { BiLogIn, BiMessageAltMinus } from 'react-icons/bi'
-import { IoIosNotificationsOutline } from 'react-icons/io'
-import { CgDetailsMore } from 'react-icons/cg'
+import {
+  AiOutlineMenu,
+  AiOutlineSearch,
+  AiOutlineCloseCircle,
+  AiOutlineArrowUp,
+  AiOutlineArrowDown
+} from 'react-icons/ai'
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined'
+import { FaRegMessage } from 'react-icons/fa6'
 import { images } from '~/assets/images/image'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import { SearchNewsItems } from '../Search/SearchNewsItems/SearchNewsItems'
 import { Wrapper as PopperWrapper } from '../Propper/Wrapper'
-import { Button } from '../Button/Button'
-export const Header: React.FC = () => {
+interface IHomeProps {
+  isMobile?: boolean
+}
+export const Header: React.FC<IHomeProps> = (props) => {
+  const { isMobile } = props
   const currentUser = true
-  const [isDetailProfileVisible, setDetailProfileVisible] = useState(false)
-  const [isSearch, setSearch] = useState(false)
   const [searchResult, setSearchResult] = useState([])
   const [isOpenSetting, setOpenSetting] = useState(false)
-  const [isMobile, setMobile] = useState(false)
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight
-  })
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
-    }
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-  useEffect(() => {
-    if (windowSize.width >= 500 && windowSize.width < 1024) {
-      setMobile(true)
-    } else if (windowSize.width < 500) {
-      setMobile(true)
-    } else {
-      setMobile(false)
-    }
-  }, [windowSize])
   useEffect(() => {
     setTimeout(() => {
       setSearchResult([])
@@ -52,49 +31,42 @@ export const Header: React.FC = () => {
     setOpenSetting(!isOpenSetting)
   }
   return (
-    <header className='wrapper md:flex md:justify-center w-full h-[60px] bg-color-deafult border-[1px] relative border-b-sm shadow-sm'>
-      <div className='inner w-full md:w-[1350px] md:mr-3 md:ml-3 2xl:w-[1850px] md:flex md:items-center md:justify-between '>
-        {isMobile ? (
-          <>
-            <Navbar setDetailProfileVisible={setDetailProfileVisible} setSearch={setSearch} isMobile={isMobile} />
-            {isSearch && <Search setSearch={setSearch} />}
-            {isDetailProfileVisible && (
-              <div className='fixed inset-0 flex justify-center items-center bg-color-bg-detailprofile                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           '>
-                <DetailProfile isVisible={isDetailProfileVisible} setDetailProfile={setDetailProfileVisible} />
+    <header className='h-[60px] fixed top-0 left-0 w-full z-10 flex shadow-sm items-center justify-between'>
+      <div className='inner-header-menu px-[20px] flex items-center'>
+        <div className='logowebiste_togglemenu flex items-center'>
+          {isMobile ? (
+            <>
+              <div className='menu_mobile'>
+                <button className='default-button-icons'>
+                  <AiOutlineMenu size={'25'} />
+                </button>
               </div>
-            )}
-          </>
-        ) : (
-          <>
-            <div className='flex items-center  '>
-              <Tippy content='Home' placement='bottom'>
-                <div className=''>
-                  <div className='menu-bar'></div>
-                  <div className='logo-webiste flex items-center w-[50px]'>
-                    <img src={images.logo} alt='images' className='h-[32px] cursor-pointer object-cover mr-20' />
-                  </div>
-                </div>
+              <div className='logo_website w-[50px]'>
+                <img src={images.logo} className='h-[32px]' />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className='logo_website w-[50px]'>
+                <img src={images.logo} className='h-[32px]' />
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      <div className='inner-header-action flex items-center gap-5'>
+        <div className='search-action flex'>
+          {isMobile ? (
+            <>
+              {' '}
+              <Tippy content='Search' placement='bottom'>
+                <button className='default-button-icons md:hidden'>
+                  <AiOutlineSearch size={'25px'} />
+                </button>
               </Tippy>
-              <span className='ml-3 text-16 leading-3'>Open Unviserty</span>
-              {currentUser ? (
-                <>
-                  <div
-                    className='name_page flex justify-between items-center 
-                  text-xl font-bold gap-3 w-[200px] ml-10 cursor-pointer  px-4 py-2 hover:bg-hover-deafult rounded-md ease-in duration-300'
-                  >
-                    <div className='flex items-center gap-2'>
-                      <button>
-                        <AiOutlineHome size={'25px'} />
-                      </button>
-                      <span>Home</span>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div>
+            </>
+          ) : (
+            <>
               <Tippy
                 interactive
                 visible={searchResult.length > 0}
@@ -132,59 +104,63 @@ export const Header: React.FC = () => {
                   </button>
                 </div>
               </Tippy>
+            </>
+          )}
+        </div>
+        <div
+          className='handler-action flex items-center transition-all ease-out cursor-pointer'
+          onClick={handlerToggleOpenSetiing}
+        >
+          <div className='action_function flex items-center gap-2'>
+            <Tippy content='Message' placement='bottom'>
+              <div className='relative'>
+                <button className='default-button-icons'>
+                  <FaRegMessage size={'25px'} />
+                  <span className='badge absolute top-[-3px] leading-4 right-0 bg-primary rounded-full px-[6px] text-white h-4 text-center text-sm'>
+                    12
+                  </span>
+                </button>
+              </div>
+            </Tippy>
+            <Tippy content='Create the post' placement='bottom'>
+              <button className='default-button-icons'>
+                <CreateOutlinedIcon className='text-[25px]' />
+              </button>
+            </Tippy>
+            <Tippy content='Create the post' placement='bottom'>
+              <button className='default-button-icons md:block hidden'>
+                <CreateOutlinedIcon className='text-[25px]' />
+              </button>
+            </Tippy>
+            <Tippy content='Create the post' placement='bottom'>
+              <button className='default-button-icons md:block hidden'>
+                <CreateOutlinedIcon className='text-[25px]' />
+              </button>
+            </Tippy>
+          </div>
+          <div className='user md:w-[170px] relative flex items-center md:justify-between md:border-[1px] md:px-2 md:py-2 hover:bg-hover-popper md:rounded-lg'>
+            <div className='flex items-center gap-2'>
+              <img
+                src='https://styles.redditmedia.com/t5_2qinp/styles/communityIcon_ex2l6ktnrob51.png'
+                className='h-[32px] rounded-full object-cover'
+              />
+              <span className='w-[6px] h-[6px] absolute bg-green-300 right-[2px] bottom-[-1px] rounded-full md:hidden '></span>
+              <span className='text-16 leading-3 md:block hidden'>Username</span>
             </div>
-            <div className='action ml-10 flex items-center'>
-              {currentUser ? (
+            <div className='icon hidden md:block'>
+              {isOpenSetting ? (
                 <>
-                  <Tippy content='Message' placement='bottom'>
-                    <div className='flex cursor-pointer bg-transparent relative mr-5 '>
-                      <BiMessageAltMinus size={'32px'} />
-                      <span className='w-2 h-2 absolute bg-red-500 right-0 top-0 rounded-full'></span>
-                    </div>
-                  </Tippy>
-                  <Tippy content='Notifications' placement='bottom'>
-                    <div className='flex cursor-pointer bg-transparent relative'>
-                      <IoIosNotificationsOutline size={'32px'} />
-                      <span className='w-2 h-2 absolute bg-red-500 right-[5px] top-[2px] rounded-full'></span>
-                    </div>
-                  </Tippy>
-                  <div
-                    className='avatar_user w-[200px] object-cover border-[1px] flex items-center  
-                  text-12 font-bold gap-3  ml-10 cursor-pointer mr-10 px-4 py-2 hover:bg-hover-deafult rounded-md ease-in duration-300'
-                    onClick={handlerToggleOpenSetiing}
-                  >
-                    <img
-                      src='https://avatars.githubusercontent.com/u/102682115?v=4'
-                      className='rounded-full cursor-pointer w-[32px]'
-                      alt='user_image'
-                    />
-                    <span className='name_user text-text-color-weak'>minhtam7895</span>
-                    <div className='ease-in duration-300'>
-                      {isOpenSetting ? (
-                        <>
-                          <AiOutlineClose size={'20px'} />
-                        </>
-                      ) : (
-                        <>
-                          <CgDetailsMore size={'32px'} />
-                        </>
-                      )}
-                    </div>
-                  </div>
+                  <AiOutlineArrowUp size='25' />
                 </>
               ) : (
                 <>
-                  <Button text className='hover:bg-hover-deafult hover:rounded-md text-16'>
-                    Sign up
-                  </Button>
-                  <Button small rightIcon={<BiLogIn size='22px' />}>
-                    Sign in
-                  </Button>
+                  {' '}
+                  <AiOutlineArrowDown size='25' />
                 </>
               )}
             </div>
-          </>
-        )}
+          </div>
+        </div>
       </div>
     </header>
   )
