@@ -3,3 +3,9 @@ export enum RoutePaths {
   LOGIN = '/LOGIN',
   POPULAR = '/popular'
 }
+
+export enum AuthView {
+  LOGIN,
+  EMAIL,
+  SIGNUP
+}

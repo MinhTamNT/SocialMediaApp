@@ -11,7 +11,9 @@
   .search-btn-loading-clear{
     @apply absolute right-[52px] top-[50%] translate-y-[-50%] text-color-loading-clear-btn
   }
-  
+  .input-fields-default {
+    @apply h-[40px] w-full bg-input-fields-color p-4 rounded-full
+  }
   
 }
 

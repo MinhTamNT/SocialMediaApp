@@ -1,7 +1,8 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 import { Header } from '~/components/Header/Header'
 import { Content } from '../components/Content/Content'
-import { log } from 'console'
+import { SiginInOrSignUp } from '~/components/SignInOrSiguUp/SiginInOrSignUp'
+
 interface DefaultLayoutProps {
   children: ReactNode
 }
@@ -13,6 +14,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
     height: window.innerHeight
   })
   const [isLogin, setLogin] = useState(false)
+ 
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight })
@@ -23,6 +25,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
   useEffect(() => {
     if (windowSize.width >= 500 && windowSize.width < 1190) {
       setMobile(true)
@@ -31,8 +34,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
     } else {
       setMobile(false)
     }
-  }, [])
-  console.log(windowSize)
+  }, [windowSize])
 
   return (
     <div className='wrapper md:flex md:justify-center flex-col md:items-center md:overflow-x-hidden md:overflow-y-auto relative '>
@@ -41,11 +43,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
         <Content />
         <div className='information_pages md:flex-1 md:min-h-[1000px]'>{children}</div>
       </div>
-      {isLogin && (
-        <div className='fixed inset-0 z-10 flex items-center justify-center bg-black animate-[modal_1s_ease-in] bg-opacity-50'>
-          <div className='md:w-[500px] md:h-[500px]  w-full h-full modal animate-[modal_1s_ease-in-out] bg-white shadow-sm p-8 rounded-xl '></div>
-        </div>
-      )}
+      {isLogin && <SiginInOrSignUp isMobile={isMobile} setLogin={setLogin} />}
     </div>
   )
 }

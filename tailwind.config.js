@@ -13,7 +13,7 @@ export default {
         },
       },
       animation: {
-        modalapper: "modal 0.1s ease-in linear ",
+        modalapper: "modal 1s ease-in linear ",
       },
       colors: {
         primary: "#fe2c55",
@@ -28,6 +28,12 @@ export default {
         "PopperWrapper-color-Tippy": "rgba(255,255,255)",
         "color-popper": "rgba(22,24,35,0.5)",
         "hover-popper": "rgba(22,24,35,0.03)",
+        "blue-color": "#0045AC",
+        "color-default": "#D93A00",
+        "color-primary": "#488aec",
+        "input-fields-color": "#F2F2F2",
+        "color-button":
+          "linear-gradient(180deg, #363636 0%, #1B1B1B 50%, #000000 100%);",
       },
       fontSize: {
         11: "11px",
