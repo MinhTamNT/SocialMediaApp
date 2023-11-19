@@ -12,6 +12,8 @@ interface InputProps {
   inputTitle?: boolean
   inputDesc?: boolean
   inputDefault?: boolean
+  value?: string // Update here
+  type: string
 }
 
 const cx = classNames.bind(styles)
@@ -22,6 +24,8 @@ function Input(props: InputProps) {
     setData,
     label,
     inputType,
+    value,
+    type,
     className,
     inputAbout = false,
     inputTitle = false,
@@ -37,16 +41,19 @@ function Input(props: InputProps) {
     inputDesc
   })
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setData(e.target.value)
+  }
+
   return (
     <>
       <label className='my-2'>{label}</label>
       {inputType === 'textarea' ? (
-        <textarea className={classes} placeholder={data} onChange={(e) => setData(e.target.value)}></textarea>
+        <textarea className={classes} placeholder={data} value={value} onChange={handleChange}></textarea>
       ) : (
-        <input type='text' className={classes} placeholder={data} onChange={(e) => setData(e.target.value)} />
+        <input type={type} value={value} className={classes} placeholder={data} onChange={handleChange} />
       )}
     </>
   )
 }
-
 export default Input

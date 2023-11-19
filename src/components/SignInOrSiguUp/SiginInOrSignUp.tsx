@@ -21,7 +21,7 @@ export const SiginInOrSignUp: React.FC<Iprop> = (props) => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const modalWidthClass = isMobile ? 'w-full' : 'md:w-[500px]'
-  const modalHeightClass = isMobile ? 'h-[119vh]' : 'md:h-[570px]'
+  const modalHeightClass = isMobile ? 'h-[130vh]' : 'md:h-[570px]'
   const handleToggleView = (view: AuthView) => {
     setCurrentView(view)
   }
@@ -37,6 +37,8 @@ export const SiginInOrSignUp: React.FC<Iprop> = (props) => {
     },
     onSubmit: (value) => {}
   })
+  console.log(formilk.values)
+
   return (
     <div className='fixed flex justify-center  items-start inset-0 z-10 bg-black animate-[modal_1s_ease-in] bg-opacity-50 overflow-x-hidden '>
       <div
@@ -71,14 +73,17 @@ export const SiginInOrSignUp: React.FC<Iprop> = (props) => {
                   label='Username'
                   data='Enter your name'
                   className='input-fields-default'
-                  setData={() => {}}
+                  value={formilk.values.username || ''}
+                  setData={(value) => formilk.setFieldValue('username', value)}
+                  type='text'
                   inputType='text'
                 />
                 <Input
                   label='Password'
+                  type='password'
                   data='Enter your password'
                   className='input-fields-default'
-                  setData={() => {}}
+                  setData={(value) => formilk.setFieldValue('password', value)}
                   inputType='text'
                 />
               </form>
@@ -117,7 +122,9 @@ export const SiginInOrSignUp: React.FC<Iprop> = (props) => {
                   label='Username'
                   data='Enter your email'
                   className='input-fields-default'
-                  setData={() => {}}
+                  value={formilk.values.email}
+                  type='email'
+                  setData={(value) => formilk.setFieldValue('username', value)}
                   inputType='text'
                 />
               </form>
@@ -147,21 +154,27 @@ export const SiginInOrSignUp: React.FC<Iprop> = (props) => {
                     label='Username'
                     data='Enter your name'
                     className='h-[50px]  w-full bg-input-fields-color p-4 rounded-md'
-                    setData={() => {}}
+                    value={formilk.values.username}
+                    setData={(value) => formilk.setFieldValue('username', value)}
+                    type='text'
                     inputType='text'
                   />
                   <Input
                     label='Password'
                     data='Enter your password'
+                    type='password'
                     className='h-[50px] w-full p-4 bg-input-fields-color rounded-md'
-                    setData={() => {}}
+                    value={formilk.values.password}
+                    setData={(value) => formilk.setFieldValue('password', value)}
                     inputType='text'
                   />
                   <Input
                     label='Confirm Password'
                     data='Confirm Password'
+                    type='password'
+                    value={formilk.values.confirmpassword}
+                    setData={(value) => formilk.setFieldValue('confrimpassword', value)}
                     className='h-[50px] w-full p-4 bg-input-fields-color rounded-md'
-                    setData={() => {}}
                     inputType='text'
                   />
                   <button className=' md:h-[50px] w-full h-[40px] mt-4 md:mt-10 rounded-lg bg-color-primary text-white font-bold text-20 shadow-md'>
