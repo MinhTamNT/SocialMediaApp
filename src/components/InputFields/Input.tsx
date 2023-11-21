@@ -4,7 +4,7 @@ import styles from './Input.module.scss'
 // Định nghĩa kiểu props cho component
 interface InputProps {
   data: string
-  setData: (value: string) => void
+  setData: React.Dispatch<React.SetStateAction<string>>
   label?: string
   inputType: string
   className?: string
@@ -12,7 +12,7 @@ interface InputProps {
   inputTitle?: boolean
   inputDesc?: boolean
   inputDefault?: boolean
-  value?: string // Update here
+  value?: string
   type: string
 }
 
@@ -24,8 +24,8 @@ function Input(props: InputProps) {
     setData,
     label,
     inputType,
-    value,
     type,
+    value,
     className,
     inputAbout = false,
     inputTitle = false,
@@ -41,19 +41,22 @@ function Input(props: InputProps) {
     inputDesc
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setData(e.target.value)
-  }
-
   return (
     <>
       <label className='my-2'>{label}</label>
       {inputType === 'textarea' ? (
-        <textarea className={classes} placeholder={data} value={value} onChange={handleChange}></textarea>
+        <textarea className={classes} placeholder={data} onChange={(e) => setData(e.target.value)}></textarea>
       ) : (
-        <input type={type} value={value} className={classes} placeholder={data} onChange={handleChange} />
+        <input
+          type={type}
+          value={value}
+          className={classes}
+          placeholder={data}
+          onChange={(e) => setData(e.target.value)}
+        />
       )}
     </>
   )
 }
+
 export default Input

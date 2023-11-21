@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 import { Header } from '~/components/Header/Header'
 import { Content } from '../components/Content/Content'
-import { SiginInOrSignUp } from '~/components/SignInOrSiguUp/SiginInOrSignUp'
+import { SiginInOrSignUp } from '~/components/SignInOrSiguUp/SiginInOrSignUp.1'
 
 interface DefaultLayoutProps {
   children: ReactNode
@@ -14,7 +14,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
     height: window.innerHeight
   })
   const [isLogin, setLogin] = useState(false)
- 
+
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight })
