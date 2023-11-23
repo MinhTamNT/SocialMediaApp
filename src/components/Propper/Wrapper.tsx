@@ -1,12 +1,8 @@
-
 interface Iprop {
   children: React.ReactNode
+  className?: string
 }
 
-export const Wrapper: React.FC<Iprop> = ({ children }) => {
-  return (
-    <div className='wrapper sm:w-[649px] md:w-full md:bg-PopperWrapper-color-Tippy md:shadow-md md:rounded-lg '>
-      {children}
-    </div>
-  )
+export const Wrapper: React.FC<Iprop> = ({ children, className }) => {
+  return <div className={className}>{children}</div>
 }

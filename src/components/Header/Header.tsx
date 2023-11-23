@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import {
-  AiOutlineMenu,
-  AiOutlineSearch,
-  AiOutlineCloseCircle,
-  AiOutlineArrowUp,
-  AiOutlineArrowDown
-} from 'react-icons/ai'
+import { AiOutlineMenu, AiOutlineSearch, AiOutlineCloseCircle } from 'react-icons/ai'
 import { FaEarthAfrica } from 'react-icons/fa6'
 import { RiHome5Line } from 'react-icons/ri'
-import { CiBellOn, CiLogin } from 'react-icons/ci'
+import { CiBellOn, CiLogin, CiUser, CiSettings, CiLogout } from 'react-icons/ci'
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined'
 import { FaRegMessage } from 'react-icons/fa6'
 import { images } from '~/assets/images/image'
@@ -17,13 +11,35 @@ import 'tippy.js/dist/tippy.css'
 import { SearchNewsItems } from '../Search/SearchNewsItems/SearchNewsItems'
 import { Wrapper as PopperWrapper } from '../Propper/Wrapper'
 import { Button } from '../Button/Button'
+import { Menu } from '../Propper/Menu'
+import { ToggleSwitch } from '../Propper/ToogleSwitch/ToggleSwitch'
 interface IHomeProps {
   isMobile?: boolean
   setLogin: React.Dispatch<React.SetStateAction<boolean>>
 }
+let toggleSwitchComponent = <ToggleSwitch />
+const MENU_ITEMS = [
+  {
+    iconLeft: <CiUser size='25' />,
+    title: 'Profile'
+  },
+  {
+    iconLeft: toggleSwitchComponent,
+    title: 'OnLine status'
+  },
+  {
+    iconLeft: <CiSettings size='25' />,
+    title: ' User Setting',
+    seperate: true
+  },
+  {
+    iconLeft: <CiLogout size='25' />,
+    title: ' Logout'
+  }
+]
 export const Header: React.FC<IHomeProps> = (props) => {
   const { isMobile, setLogin } = props
-  const currentUser = false
+  const currentUser = true
   const [searchResult, setSearchResult] = useState([])
   const [isOpenSetting, setOpenSetting] = useState(false)
   useEffect(() => {
@@ -79,7 +95,7 @@ export const Header: React.FC<IHomeProps> = (props) => {
                     visible={searchResult.length > 0}
                     render={(arrts) => (
                       <div className='result-search w-[660px]' tabIndex={-1} {...arrts}>
-                        <PopperWrapper>
+                        <PopperWrapper className='wrapper md:w-full md:bg-PopperWrapper-color-Tippy md:shadow-md md:rounded-lg'>
                           <SearchNewsItems />
                         </PopperWrapper>
                       </div>
@@ -163,28 +179,21 @@ export const Header: React.FC<IHomeProps> = (props) => {
                   </>
                 )}
               </div>
-              <div className='user md:w-[170px] relative flex items-center md:justify-between md:border-[1px] md:px-2 md:py-2 hover:bg-hover-popper md:rounded-lg mr-2'>
-                <div className='flex items-center gap-2'>
-                  <img
-                    src='https://styles.redditmedia.com/t5_2qinp/styles/communityIcon_ex2l6ktnrob51.png'
-                    className='h-[32px] rounded-full object-cover'
-                  />
-                  <span className='w-[10px] h-[10px] absolute  text-avatar-color right-[2px] bottom-[-1px] rounded-full md:hidden '></span>
+              <Menu items={MENU_ITEMS}>
+                <div className='user md:w-[170px] relative flex items-center md:justify-between md:border-[1px] p-[8px] md:px-2 md:py-2 hover:bg-hover-popper md:rounded-lg mr-2'>
+                  <div className='flex items-center gap-2'>
+                    <img
+                      src='https://styles.redditmedia.com/t5_2qinp/styles/communityIcon_ex2l6ktnrob51.png'
+                      className='h-[32px] rounded-full object-cover'
+                    />
+                    <span className='w-[10px] h-[10px] absolute  text-avatar-color right-[2px] bottom-[-1px] rounded-full md:hidden '></span>
+                  </div>
+                  <span className='text-16 leading-3 md:block hidden'>Username</span>
+                  <div className='icon hidden md:block'>
+                    <span className='z-10 absolute w-[7px] h-[7px] bg-text-color-weak left-[10px] rounded-full bottom-[9px]'></span>
+                  </div>
                 </div>
-                <span className='text-16 leading-3 md:block hidden'>Username</span>
-                <div className='icon hidden md:block'>
-                  {isOpenSetting ? (
-                    <>
-                      <AiOutlineArrowUp size='25' />
-                    </>
-                  ) : (
-                    <>
-                      {' '}
-                      <AiOutlineArrowDown size='25' />
-                    </>
-                  )}
-                </div>
-              </div>
+              </Menu>
             </div>
           </>
         ) : (
