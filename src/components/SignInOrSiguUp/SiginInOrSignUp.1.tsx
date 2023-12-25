@@ -24,7 +24,7 @@ export const SiginInOrSignUp: React.FC<Iprop> = (props) => {
   const [confrimpassword, setConfrimpassword] = useState('')
   const [email, setEmail] = useState('')
   const modalWidthClass = isMobile ? 'w-full' : 'md:w-[500px]'
-  const modalHeightClass = isMobile ? 'h-[146vh]' : 'md:h-screen md:max-h-[650px]'
+  const modalHeightClass = isMobile ? 'h-screen' : ' md:max-h-[650px]'
   const handleToggleView = (view: AuthView) => {
     setCurrentView(view)
   }
@@ -65,9 +65,9 @@ export const SiginInOrSignUp: React.FC<Iprop> = (props) => {
   console.log(formik.errors.email)
 
   return (
-    <div className='fixed flex justify-center  items-start inset-0 z-10 bg-black animate-[modal_1s_ease-in] bg-opacity-50 overflow-x-hidden '>
+    <div className='fixed flex justify-center  items-start inset-0 z-10 bg-black animate-[modal_1s_ease-in] bg-opacity-50 overflow-auto '>
       <div
-        className={` flex flex-col ${modalWidthClass} ${modalHeightClass}  md:absolute md:top-[8%] modal animate-[modal_1s_ease-in-out] bg-white shadow-sm md:p-4 p-2 md:rounded-xl max-w-full`}
+        className={` flex flex-col ${modalWidthClass} ${modalHeightClass}  md:absolute modal animate-[modal_1s_ease-in-out] bg-white shadow-sm md:p-4  md:rounded-xl max-w-full`}
       >
         <div className={`${currentView === AuthView.SIGNUP ? 'hidden' : 'ml-auto'}`}>
           <button className='default-button-icons rounded-full  my-2'>

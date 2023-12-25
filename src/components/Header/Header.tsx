@@ -39,7 +39,7 @@ const MENU_ITEMS = [
 ]
 export const Header: React.FC<IHomeProps> = (props) => {
   const { isMobile, setLogin } = props
-  const currentUser = true
+  const currentUser = false
   const [searchResult, setSearchResult] = useState([])
   const [isOpenSetting, setOpenSetting] = useState(false)
   useEffect(() => {

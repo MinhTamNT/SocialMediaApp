@@ -27,7 +27,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    if (windowSize.width >= 500 && windowSize.width < 1190) {
+    if (windowSize.width >= 500 && windowSize.width < 768) {
       setMobile(true)
     } else if (windowSize.width < 500) {
       setMobile(true)
